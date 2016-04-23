@@ -9,6 +9,10 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "MyFsharpBot", "MyFsharpBot\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetfairApiConsole", "BetfairApiConsole\BetfairApiConsole.csproj", "{B87A9716-CC80-408F-BD53-15A2FB817C18}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "BetfairApiConsoleFSharp", "BetfairApiConsoleFSharp\BetfairApiConsoleFSharp.fsproj", "{157243F6-B331-48E6-9DB7-E58C73B9A97C}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "BfexplorerServiceConsole", "BfexplorerServiceConsole\BfexplorerServiceConsole.fsproj", "{7B99E502-6408-40FD-BE26-B80A10A1D44E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{B87A9716-CC80-408F-BD53-15A2FB817C18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B87A9716-CC80-408F-BD53-15A2FB817C18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B87A9716-CC80-408F-BD53-15A2FB817C18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{157243F6-B331-48E6-9DB7-E58C73B9A97C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{157243F6-B331-48E6-9DB7-E58C73B9A97C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{157243F6-B331-48E6-9DB7-E58C73B9A97C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{157243F6-B331-48E6-9DB7-E58C73B9A97C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B99E502-6408-40FD-BE26-B80A10A1D44E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B99E502-6408-40FD-BE26-B80A10A1D44E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B99E502-6408-40FD-BE26-B80A10A1D44E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B99E502-6408-40FD-BE26-B80A10A1D44E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

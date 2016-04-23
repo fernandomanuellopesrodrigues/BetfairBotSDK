@@ -32,9 +32,17 @@ namespace BetfairApiConsole
         /// <param name="args"></param>
         static void Main(string[] args)
         {
+            if (args.Length != 2)
+            {
+                throw new Exception("Please enter your betfair user name and password!");
+            }
+
+            var username = args[0];
+            var password = args[1];
+
             var betfairServiceProvider = new BetfairServiceProvider(BetfairApiServer.GBR);
 
-            var loginResult = ExecuteAsyncTask(betfairServiceProvider.AccountOperations.Login(YourBetfairData.UserName, YourBetfairData.Password));
+            var loginResult = ExecuteAsyncTask(betfairServiceProvider.AccountOperations.Login(username, password));
 
             if (loginResult.IsSuccess)
             {
@@ -46,9 +54,8 @@ namespace BetfairApiConsole
                 filter.turnInPlayEnabled = true;
                 filter.marketTypeCodes = new string[] { "MATCH_ODDS" };
 
-                var marketProjection = new MarketProjection[] { MarketProjection.EVENT, MarketProjection.MARKET_START_TIME, MarketProjection.COMPETITION, MarketProjection.RUNNER_DESCRIPTION, MarketProjection.MARKET_DESCRIPTION };
-
-                var marketCataloguesResult = ExecuteAsyncTask(betfairServiceProvider.BrowsingOperations.GetMarketCatalogues(filter, 10, FSharpOption<MarketProjection[]>.Some(marketProjection), FSharpOption<MarketSort>.None, FSharpOption<string>.None));
+                var marketCataloguesResult = ExecuteAsyncTask(betfairServiceProvider.BrowsingOperations.GetMarketCatalogues(filter, 10, 
+                    FSharpOption<MarketProjection[]>.Some(new MarketProjection[] { MarketProjection.EVENT, MarketProjection.MARKET_START_TIME, MarketProjection.COMPETITION, MarketProjection.RUNNER_DESCRIPTION, MarketProjection.MARKET_DESCRIPTION }), FSharpOption<MarketSort>.Some(MarketSort.MAXIMUM_TRADED), FSharpOption<string>.None));
 
                 if (marketCataloguesResult.IsSuccessResult)
                 {
@@ -56,7 +63,9 @@ namespace BetfairApiConsole
 
                     foreach (var marketCatalogue in marketCatalogues)
                     {
-                        Console.WriteLine($"{marketCatalogue.@event.openDate}: {marketCatalogue.@event.name}, eventId: {marketCatalogue.@event.id}, marketId: {marketCatalogue.marketId}");
+                        var betEvent = marketCatalogue.@event;
+
+                        Console.WriteLine($"{betEvent.openDate}: {betEvent.name}, eventId: {betEvent.id}, marketId: {marketCatalogue.marketId}");
                     }
                 }
 
