@@ -12,7 +12,7 @@ BfexplorerServiceConsole project shows how to use bfexplorer application service
 
 BfexplorerService implements application domain and base service required to build a trading application like bfexplorer. For instance when you want to open a betfair market, just by using BetfairApi client you need to call following api methods: listMarketCatalogue and listMarketBook. BfexplorerService offers GetMarket or GetMarkets methods, so in one call you get everything necessary.
 
-In MyBotTriggers project you can find more 30 bot triggers to execute an action bots, place bets, check football match score and so on.
+In MyBotTriggers project you can find more than 30 bot triggers to execute action bots, place bets, check football match score and so on.
 
 If you want to integrate your bot with bfexplorer Bot Editor, then have a look on MyCsharpBot or MyFsharpBot project.
 
