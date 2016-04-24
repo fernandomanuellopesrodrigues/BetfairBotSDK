@@ -18,6 +18,10 @@ If you want to integrate your bot with bfexplorer Bot Editor, then have a look o
 
 If you need to access bfexplorer data or automate user interface interaction, then use scripts from MyConsoleScripts project.
 
+How to use it:
 
+Install bfexplorer and login to betfair to activate your betfair api access. 
+
+http://bfexplorer.net/Products/Bfexplorer
 
 
