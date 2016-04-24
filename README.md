@@ -24,4 +24,4 @@ Install bfexplorer and login to betfair to activate your betfair api access.
 
 http://bfexplorer.net/Products/Bfexplorer
 
-
+http://bfexplorer.net/Articles/Content/3#Bfexplorer BOT SDK
