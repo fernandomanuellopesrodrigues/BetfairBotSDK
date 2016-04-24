@@ -25,6 +25,8 @@
     <DocumentationFile>bin\Debug\MyFsharpBot.XML</DocumentationFile>
     <StartAction>Program</StartAction>
     <StartProgram>C:\Program Files (x86)\BeloSoft\Bfexplorer\Bfexplorer.BotUI.exe</StartProgram>
+    <StartArguments>
+    </StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>

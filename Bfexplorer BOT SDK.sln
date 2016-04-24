@@ -13,6 +13,10 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "BetfairApiConsoleFSharp", "
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "BfexplorerServiceConsole", "BfexplorerServiceConsole\BfexplorerServiceConsole.fsproj", "{7B99E502-6408-40FD-BE26-B80A10A1D44E}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "MyBotTriggers", "MyBotTriggers\MyBotTriggers.fsproj", "{5A56BAFD-8D56-4EBF-8C3D-148C6E1A7E39}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "MyConsoleScripts", "MyConsoleScripts\MyConsoleScripts.fsproj", "{C6C12EE8-7AF7-4938-ADB4-D6F486BBF4B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{7B99E502-6408-40FD-BE26-B80A10A1D44E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B99E502-6408-40FD-BE26-B80A10A1D44E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B99E502-6408-40FD-BE26-B80A10A1D44E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A56BAFD-8D56-4EBF-8C3D-148C6E1A7E39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A56BAFD-8D56-4EBF-8C3D-148C6E1A7E39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A56BAFD-8D56-4EBF-8C3D-148C6E1A7E39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A56BAFD-8D56-4EBF-8C3D-148C6E1A7E39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6C12EE8-7AF7-4938-ADB4-D6F486BBF4B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6C12EE8-7AF7-4938-ADB4-D6F486BBF4B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6C12EE8-7AF7-4938-ADB4-D6F486BBF4B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6C12EE8-7AF7-4938-ADB4-D6F486BBF4B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

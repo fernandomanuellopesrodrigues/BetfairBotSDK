@@ -10,10 +10,15 @@ using Microsoft.FSharp.Control;
 using Microsoft.FSharp.Core;
 using System.Threading;
 using System;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace BetfairApiConsole
 {
-    class Program
+    /// <summary>
+    /// FSharp
+    /// </summary>
+    static public class FSharp
     {
         /// <summary>
         /// ExecuteAsyncTask
@@ -21,9 +26,65 @@ namespace BetfairApiConsole
         /// <typeparam name="T"></typeparam>
         /// <param name="task"></param>
         /// <returns></returns>
-        static T ExecuteAsyncTask<T>(FSharpAsync<T> task)
+        static public Task<T> ExecuteAsyncTask<T>(this FSharpAsync<T> task)
         {
-            return FSharpAsync.RunSynchronously(task, FSharpOption<int>.None, FSharpOption<CancellationToken>.None);
+            return FSharpAsync.StartAsTask<T>(task, FSharpOption<TaskCreationOptions>.None, FSharpOption<CancellationToken>.None);
+        }
+    }
+
+    class Program
+    {
+        /// <summary>
+        /// ExecuteMyTest
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        static async Task ExecuteMyTest(string username, string password)
+        {
+            var betfairServiceProvider = new BetfairServiceProvider(BetfairApiServer.GBR);
+
+            var accountOperations = betfairServiceProvider.AccountOperations;
+            var browsingOperations = betfairServiceProvider.BrowsingOperations;
+
+            var loginResult = await accountOperations.Login(username, password).ExecuteAsyncTask<Result>();
+
+            if (loginResult.IsSuccess)
+            {
+                var filter = new MarketFilter();
+
+                filter.eventTypeIds = new int[] { 1 };
+                filter.marketCountries = new string[] { "GB" };
+                filter.inPlayOnly = false;
+                filter.turnInPlayEnabled = true;
+                filter.marketTypeCodes = new string[] { "MATCH_ODDS" };
+
+                var marketProjection = FSharpOption<MarketProjection[]>.Some(new MarketProjection[] {
+                        MarketProjection.EVENT,
+                        MarketProjection.MARKET_START_TIME,
+                        MarketProjection.COMPETITION,
+                        MarketProjection.RUNNER_DESCRIPTION,
+                        MarketProjection.MARKET_DESCRIPTION });
+
+                var marketCataloguesResult = 
+                    await browsingOperations
+                        .GetMarketCatalogues(filter, 10, marketProjection, FSharpOption<MarketSort>.Some(MarketSort.MAXIMUM_TRADED), FSharpOption<string>.None)
+                        .ExecuteAsyncTask<DataResult<List<MarketCatalogue>>>();
+
+                if (marketCataloguesResult.IsSuccessResult)
+                {
+                    var marketCatalogues = marketCataloguesResult.SuccessResult;
+
+                    foreach (var marketCatalogue in marketCatalogues)
+                    {
+                        var betEvent = marketCatalogue.@event;
+
+                        Console.WriteLine($"{betEvent.openDate}: {betEvent.name}, eventId: {betEvent.id}, marketId: {marketCatalogue.marketId}");
+                    }
+                }
+
+                await accountOperations.Logout().ExecuteAsyncTask<Result>();
+            }
         }
 
         /// <summary>
@@ -40,37 +101,9 @@ namespace BetfairApiConsole
             var username = args[0];
             var password = args[1];
 
-            var betfairServiceProvider = new BetfairServiceProvider(BetfairApiServer.GBR);
+            var task = ExecuteMyTest(username, password);
 
-            var loginResult = ExecuteAsyncTask(betfairServiceProvider.AccountOperations.Login(username, password));
-
-            if (loginResult.IsSuccess)
-            {
-                var filter = new MarketFilter();
-
-                filter.eventTypeIds = new int[] { 1 };
-                filter.marketCountries = new string[] { "GB" };
-                filter.inPlayOnly = false;
-                filter.turnInPlayEnabled = true;
-                filter.marketTypeCodes = new string[] { "MATCH_ODDS" };
-
-                var marketCataloguesResult = ExecuteAsyncTask(betfairServiceProvider.BrowsingOperations.GetMarketCatalogues(filter, 10, 
-                    FSharpOption<MarketProjection[]>.Some(new MarketProjection[] { MarketProjection.EVENT, MarketProjection.MARKET_START_TIME, MarketProjection.COMPETITION, MarketProjection.RUNNER_DESCRIPTION, MarketProjection.MARKET_DESCRIPTION }), FSharpOption<MarketSort>.Some(MarketSort.MAXIMUM_TRADED), FSharpOption<string>.None));
-
-                if (marketCataloguesResult.IsSuccessResult)
-                {
-                    var marketCatalogues = marketCataloguesResult.SuccessResult;
-
-                    foreach (var marketCatalogue in marketCatalogues)
-                    {
-                        var betEvent = marketCatalogue.@event;
-
-                        Console.WriteLine($"{betEvent.openDate}: {betEvent.name}, eventId: {betEvent.id}, marketId: {marketCatalogue.marketId}");
-                    }
-                }
-
-                ExecuteAsyncTask(betfairServiceProvider.AccountOperations.Logout());
-            }
+            Task.WaitAll(task);
         }
     }
 }

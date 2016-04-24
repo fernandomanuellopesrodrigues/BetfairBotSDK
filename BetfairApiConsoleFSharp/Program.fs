@@ -16,9 +16,12 @@ let main argv =
     let username, password = argv.[0], argv.[1]
 
     let betfairServiceProvider = BetfairServiceProvider(BetfairApiServer.GBR)
+
+    let accountOperations = betfairServiceProvider.AccountOperations
+    let browsingOperations = betfairServiceProvider.BrowsingOperations
     
     async {
-        let! loginResult = betfairServiceProvider.AccountOperations.Login(username, password)
+        let! loginResult = accountOperations.Login(username, password)
 
         if loginResult.IsSuccessResult
         then
@@ -28,10 +31,15 @@ let main argv =
                 |> withMarketFilterParameter (EventTypeIds [| 1 |])
                 |> withMarketFilterParameter (MarketTypeCodes [| "MATCH_ODDS" |])
                 |> withMarketFilterParameter (InPlayOnly false)
+
+            let marketProjection = [| 
+                    MarketProjection.EVENT
+                    MarketProjection.MARKET_START_TIME
+                    MarketProjection.COMPETITION
+                    MarketProjection.RUNNER_DESCRIPTION
+                    MarketProjection.MARKET_DESCRIPTION |]
             
-            let! marketCataloguesResult = betfairServiceProvider.BrowsingOperations.GetMarketCatalogues(filter, 10, 
-                                            marketProjection = [| MarketProjection.EVENT; MarketProjection.MARKET_START_TIME; MarketProjection.COMPETITION; MarketProjection.RUNNER_DESCRIPTION; MarketProjection.MARKET_DESCRIPTION |], 
-                                            sort = MarketSort.MAXIMUM_TRADED)
+            let! marketCataloguesResult = browsingOperations.GetMarketCatalogues(filter, 10, marketProjection, MarketSort.MAXIMUM_TRADED)
 
             if marketCataloguesResult.IsSuccessResult
             then
@@ -44,7 +52,7 @@ let main argv =
                         Console.WriteLine(sprintf "%A: %s, eventId: %s, marketId: %s" betEvent.openDate betEvent.name betEvent.id marketCatalogue.marketId)
                     )
 
-            do! betfairServiceProvider.AccountOperations.Logout() |> Async.Ignore
+            do! accountOperations.Logout() |> Async.Ignore
     }
     |> Async.RunSynchronously
 

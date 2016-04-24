@@ -41,7 +41,7 @@ namespace MyCsharpBot
         {
             if (iteration++ < myParameters.NumberOfIterations)
             {
-                this.OutputMarketMessage(string.Format("Total matched: {0:N2}", this.RunningOnMarket.TotalMatched));
+                this.OutputMarketMessage($"Total matched: {this.RunningOnMarket.TotalMatched:N2}");
             }
             else
             {

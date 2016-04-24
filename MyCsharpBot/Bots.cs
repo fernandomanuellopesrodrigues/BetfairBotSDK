@@ -70,7 +70,7 @@ namespace MyCsharpBot
     public sealed class BfexplorerBotCreator : IBotCreator
     {
         private static BotDescriptor[] myBots = {
-                new BotDescriptor(new BotId(200, "My Csharp Test Bot"), new MyMarketBotParameters()),
+                new BotDescriptor(new BotId(200, "C# - My Csharp Test Bot"), new MyMarketBotParameters()),
                 new BotDescriptor(new BotId(201, "C# - Update SP prices"), new UpdateSpPricesBotParameters()),
                 new BotDescriptor(new BotId(202, "C# - Show Selection SP prices"), new BotParameters())
             };

@@ -10,10 +10,10 @@ open BeloSoft.Bfexplorer.Trading
 module Bots =
 
     let internal MyBots = [|
-            { BotDescriptor.BotId = { BotId.Id = 100; BotId.Name = "My Fsharp Test Bot" }; BotDescriptor.Parameters = MyMarketBotParameters() }
-            { BotDescriptor.BotId = { BotId.Id = 101; BotId.Name = "Update SP prices" }; BotDescriptor.Parameters = UpdateSpPricesBotParameters() }
-            { BotDescriptor.BotId = { BotId.Id = 102; BotId.Name = "Show Selection SP prices" }; BotDescriptor.Parameters = BotParameters() }
-            { BotDescriptor.BotId = { BotId.Id = 103; BotId.Name = "Bfexplorer Spreadsheet Demo" }; BotDescriptor.Parameters = SpreadsheetDemoBotParameters() }
+            { BotDescriptor.BotId = { BotId.Id = 100; BotId.Name = "F# - My Fsharp Test Bot" }; BotDescriptor.Parameters = MyMarketBotParameters() }
+            { BotDescriptor.BotId = { BotId.Id = 101; BotId.Name = "F# - Update SP prices" }; BotDescriptor.Parameters = UpdateSpPricesBotParameters() }
+            { BotDescriptor.BotId = { BotId.Id = 102; BotId.Name = "F# - Show Selection SP prices" }; BotDescriptor.Parameters = BotParameters() }
+            { BotDescriptor.BotId = { BotId.Id = 103; BotId.Name = "F# - Bfexplorer Spreadsheet Demo" }; BotDescriptor.Parameters = SpreadsheetDemoBotParameters() }
         |]
 
     let internal MyBotsCreators : (Market * Selection * BotParameters * IBfexplorerService -> Bot) [] = [|

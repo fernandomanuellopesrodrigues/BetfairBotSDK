@@ -31,7 +31,7 @@ let main argv =
         then
             let filter = [ 
                     //Countries [| "GB" |]; 
-                    BetEventTypeIds [| 1 |]; MarketTypeCodes [| "MATCH_ODDS" |]; MarketTypeCodes [| "MATCH_ODDS" |];
+                    BetEventTypeIds [| 1 |]; MarketTypeCodes [| "MATCH_ODDS" |];
                     //InPlayOnly false; 
                     InPlayOnly true; 
                     TurnInPlayEnabled true
