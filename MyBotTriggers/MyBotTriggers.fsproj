@@ -93,6 +93,7 @@
     <None Include="TennisDataToSpreadsheet.fs" />
     <None Include="TestBotTrigger.fs" />
     <Content Include="App.config" />
+    <Compile Include="ExecuteAtPricePercentagesBotTrigger.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="BeloSoft.Betfair.API">

@@ -2,16 +2,13 @@
 // It is up to you to determine the level of risk you wish to trade under. 
 // Do not gamble with money you cannot afford to lose.
 
-using BeloSoft.Data;
 using BeloSoft.Betfair.API;
 using BeloSoft.Betfair.API.Models;
-
 using Microsoft.FSharp.Control;
 using Microsoft.FSharp.Core;
-using System.Threading;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 
 namespace BetfairApiConsole
 {
@@ -47,7 +44,7 @@ namespace BetfairApiConsole
             var accountOperations = betfairServiceProvider.AccountOperations;
             var browsingOperations = betfairServiceProvider.BrowsingOperations;
 
-            var loginResult = await accountOperations.Login(username, password).ExecuteAsyncTask<Result>();
+            var loginResult = await accountOperations.Login(username, password).ExecuteAsyncTask();
 
             if (loginResult.IsSuccess)
             {
@@ -69,7 +66,7 @@ namespace BetfairApiConsole
                 var marketCataloguesResult = 
                     await browsingOperations
                         .GetMarketCatalogues(filter, 10, marketProjection, FSharpOption<MarketSort>.Some(MarketSort.MAXIMUM_TRADED), FSharpOption<string>.None)
-                        .ExecuteAsyncTask<DataResult<List<MarketCatalogue>>>();
+                        .ExecuteAsyncTask();
 
                 if (marketCataloguesResult.IsSuccessResult)
                 {
@@ -83,7 +80,7 @@ namespace BetfairApiConsole
                     }
                 }
 
-                await accountOperations.Logout().ExecuteAsyncTask<Result>();
+                await accountOperations.Logout().ExecuteAsyncTask();
             }
         }
 

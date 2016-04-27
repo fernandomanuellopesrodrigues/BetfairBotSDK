@@ -17,6 +17,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "MyBotTriggers", "MyBotTrigg
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "MyConsoleScripts", "MyConsoleScripts\MyConsoleScripts.fsproj", "{C6C12EE8-7AF7-4938-ADB4-D6F486BBF4B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JayBeeBot", "JayBeeBot\JayBeeBot.csproj", "{06C934A9-1BA9-42BB-AEC5-DEB13465C3AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{C6C12EE8-7AF7-4938-ADB4-D6F486BBF4B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6C12EE8-7AF7-4938-ADB4-D6F486BBF4B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6C12EE8-7AF7-4938-ADB4-D6F486BBF4B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06C934A9-1BA9-42BB-AEC5-DEB13465C3AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06C934A9-1BA9-42BB-AEC5-DEB13465C3AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06C934A9-1BA9-42BB-AEC5-DEB13465C3AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06C934A9-1BA9-42BB-AEC5-DEB13465C3AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
